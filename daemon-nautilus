@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -z "$1" ];
+then
+daemon nautilus $(pwd)
+elif [ -n "$1" ];
+then
+daemon nautilus "$1"
+fi
+                     
