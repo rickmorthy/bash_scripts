@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# n=$@
+path=$(pwd)
+echo $path
+VAR1="$1"
+VAR2=".docx"
+	# echo $1
+# echo $@
+# exit 1
+caller(){
+		if [ -n "$3" ]
+	then
+		if [ -n "$4" ]
+		then
+		# echo '4 and 3 parametr'
+		php app.php $path ${n[0]} ${n[1]} ${n[2]} ${n[3]}
+		exit 1
+		fi
+	# echo '3 paramater'
+	php app.php $path ${n[0]} ${n[1]} ${n[2]} 
+	exit 1
+	else
+	# echo '1 and 2 param'
+	php app.php $path ${n[0]} ${n[1]}
+	fi
+ 
+	chmod a-w "$1.docx"
+}
+
+while [ -n "$1" ]
+do
+case "$1" in
+-h) echo "1 param - Company name"
+	echo "2 param - Address"
+ 	echo "3 param - Reciever name"
+	echo ''
+	echo "-f : Rewrite existing file" ;;
+-f) 
+shift
+n=$@
+rm -f "$1.docx"
+echo "$1.docx was removed"
+echo $@
+	caller 
+	break
+;;
+*) 
+# echo $1
+n=$@
+caller 
+break
+;;
+esac
+shift
+done
+
+
+
