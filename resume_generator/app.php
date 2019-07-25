@@ -1,13 +1,19 @@
 <?php 
 $path = $argv[1];
-$template_file = "Brailko_A_CV _sample.docx";
+$template_file = "Brailko_A_CV_sample.docx";
 $company_name = $argv[2];
-// var_dump($company_name);
+$pos = strpos($company_name, '%');
+// echo $pos;
+preg_replace('/%/i',' ',$company_name);
+var_dump($company_name);
+if($pos !== false){
+    echo true;
+}
 $today_date = date('m/d/Y');
-$new_file = $company_name . '.docx';
+$new_file = 'Brailko_A_CV_' . $company_name . '.docx';
 // $folder   = "results_";
-$full_path = $path . '/' . $company_name . '.docx';
- echo $argv[3];
+$full_path = $path . '/Brailko_A_CV_' . $company_name . '.docx';
+//  echo $full_path;
 try
 {
     if (!file_exists($full_path))

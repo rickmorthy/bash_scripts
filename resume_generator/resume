@@ -2,9 +2,9 @@
 
 # n=$@
 path=$(pwd)
-echo $path
-VAR1="$1"
-VAR2=".docx"
+# echo $path
+# VAR1="$1"
+# VAR2=".docx"
 	# echo $1
 # echo $@
 # exit 1
@@ -15,17 +15,18 @@ caller(){
 		then
 		# echo '4 and 3 parametr'
 		php app.php $path ${n[0]} ${n[1]} ${n[2]} ${n[3]}
-		exit 1
+		# exit 1
 		fi
 	# echo '3 paramater'
 	php app.php $path ${n[0]} ${n[1]} ${n[2]} 
-	exit 1
+	# exit 1
 	else
 	# echo '1 and 2 param'
+	echo $n
+	# exit 1
 	php app.php $path ${n[0]} ${n[1]}
 	fi
- 
-	chmod a-w "$1.docx"
+	
 }
 
 while [ -n "$1" ]
@@ -39,9 +40,9 @@ case "$1" in
 -f) 
 shift
 n=$@
-rm -f "$1.docx"
-echo "$1.docx was removed"
-echo $@
+rm -f "Brailko_A_CV_${n[0]}.docx"
+echo "Brailko_A_CV_${n[0]}.docx was removed"
+# echo $@
 	caller 
 	break
 ;;
@@ -54,6 +55,6 @@ break
 esac
 shift
 done
-
-
+# echo $1
+chmod a-w "Brailko_A_CV_$1.docx"
 
