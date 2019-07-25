@@ -1,19 +1,23 @@
 <?php 
 $path = $argv[1];
 $template_file = "Brailko_A_CV_sample.docx";
-$company_name = $argv[2];
+$company_name = $file_name = $argv[2];
 $pos = strpos($company_name, '%');
 // echo $pos;
-preg_replace('/%/i',' ',$company_name);
-var_dump($company_name);
+// var_dump(preg_replace('/%/i',' ',$company_name));
+// var_dump(preg_filter('/%/i',' ',$company_name));
+
+// var_dump($pos);
 if($pos !== false){
-    echo true;
+    echo 'HERE';
+    $company_name = preg_filter('/%/i',' ',$company_name);
+    var_dump($company_name);
 }
 $today_date = date('m/d/Y');
-$new_file = 'Brailko_A_CV_' . $company_name . '.docx';
+$new_file = 'Brailko_A_CV_' . $file_name . '.docx';
 // $folder   = "results_";
-$full_path = $path . '/Brailko_A_CV_' . $company_name . '.docx';
-//  echo $full_path;
+$full_path = $path . '/Brailko_A_CV_' . $file_name . '.docx';
+ echo $full_path;
 try
 {
     if (!file_exists($full_path))
@@ -21,7 +25,7 @@ try
         copy($template_file, $full_path);
         // mkdir($folder);
     }else{
-        echo "File " . $new_file . ' already exists.';
+        echo "File " . $file_name . ' already exists.';
     }
          
     //Copy the Template file to the Result Directory
